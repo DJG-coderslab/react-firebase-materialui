@@ -1,25 +1,18 @@
 
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
-import {
-  getAuth,
-  onAuthStateChanged,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
-// import app from "./../../firebase/firebaseConfig";
 import app from "../../firebase/firebaseConfig";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import { doc, addDoc, getFirestore, collection } from "firebase/firestore";
+import { addDoc, getFirestore, collection } from "firebase/firestore";
 
 
 export default function AddArticles() {
 
     const [title, setTitle] = useState("");
     const [photo, setPhoto] = useState("");
-    const [text, setText] = useState("");
+  const [text, setText] = useState("");
+  const [success, setSuccess] = useState(false);
 
     const submitHandler = async (e) => {
         e.preventDefault();
@@ -29,10 +22,14 @@ export default function AddArticles() {
             photo,
             text
         });
+      if (docRef) {
+        setSuccess(true);
+      }
 }    
 
     return (
-        <Box>
+      <Box>
+        {success && <h2>Artykuł dodoany</h2>}
             <form onSubmit={submitHandler}>
         {/* <Typography variant="h2">Rejetsracja</Typography> */}
           <TextField
