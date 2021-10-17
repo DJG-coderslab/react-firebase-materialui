@@ -2,7 +2,7 @@
 
 .history/
 package-lock.json
-/../firebase/firebaseConfig.js
+src/firebase/firebaseConfig.js
 
 # dependencies
 /node_modules
